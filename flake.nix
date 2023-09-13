@@ -3,12 +3,13 @@
 
   inputs = {
     nixpkgs.url     = github:nixos/nixpkgs/be44bf67; # nixos-22.05 2022-10-15
-    mixpkgs.url     = github:nixos/nixpkgs/3b4a2c7; # 2023-08-02
+    mixpkgs.url     = github:nixos/nixpkgs/4f77ea6; # nixos-23.05 2023-09-07
 #    mixpkgs.url     = github:nixos/nixpkgs/b80586e; # 2023-06-14
 #    mixpkgs.url     = github:nixos/nixpkgs/dcf6d202; # 2023-04-17
 #    mixpkgs.url     = github:nixos/nixpkgs/3ae365af; # 2023-01-14
     flake-utils.url = github:numtide/flake-utils/c0e246b9;
-    hpkgs1.url      = github:sixears/hpkgs1/r0.0.0.0;
+#    hpkgs1.url      = github:sixears/hpkgs1/r0.0.0.0;
+    hpkgs1.url      = "/home/martyn/src/hpkgs1";
   };
 
   outputs = { self, nixpkgs, mixpkgs, flake-utils, hpkgs1 }:
@@ -43,7 +44,8 @@
             inherit (mkgs) firefox chromium;
 
             # media
-            inherit audacity audacious evince ffmpeg gqview handbrake shntool;
+            inherit (mkgs) audacity;
+            inherit audacious evince ffmpeg gqview handbrake shntool;
 
             inherit (mkgs) makemkv chrysalis;
             vlc = pkgs.vlc.override { inherit libbluray; };
