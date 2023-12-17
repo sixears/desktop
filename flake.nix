@@ -3,7 +3,8 @@
 
   inputs = {
     nixpkgs.url     = github:nixos/nixpkgs/be44bf67; # nixos-22.05 2022-10-15
-    mixpkgs.url     = github:nixos/nixpkgs/4f77ea6; # nixos-23.05 2023-09-07
+    mixpkgs.url     = github:nixos/nixpkgs/5cfafa1; # nixos-23.05 2023-09-27
+#    mixpkgs.url     = github:nixos/nixpkgs/4f77ea6; # nixos-23.05 2023-09-07
 #    mixpkgs.url     = github:nixos/nixpkgs/b80586e; # 2023-06-14
 #    mixpkgs.url     = github:nixos/nixpkgs/dcf6d202; # 2023-04-17
 #    mixpkgs.url     = github:nixos/nixpkgs/3ae365af; # 2023-01-14
