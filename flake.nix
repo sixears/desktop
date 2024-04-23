@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url     = github:NixOS/nixpkgs/354184a; # master 2023-12-13
-    mixpkgs.url     = github:NixOS/nixpkgs/354184a; # master 2023-12-13
+    mixpkgs.url     = github:NixOS/nixpkgs/bb1cf08; # master 2024-02-06
     flake-utils.url = github:numtide/flake-utils/c0e246b9;
     hpkgs1.url      = github:sixears/hpkgs1/r0.0.23.0;
 #    hpkgs1.url      = "/home/martyn/src/hpkgs1";
@@ -44,8 +44,13 @@
             inherit (mkgs) audacity;
             inherit audacious evince ffmpeg gqview handbrake shntool;
 
-            inherit (mkgs) makemkv chrysalis;
+            ## video
             vlc = pkgs.vlc.override { inherit libbluray; };
+            inherit (mkgs) makemkv;
+            losslesscut = losslesscut-bin;
+
+            # keyboardIO
+            inherit chrysalis;
 
             # office
             inherit libreoffice gnumeric;
@@ -65,8 +70,15 @@
             # priorities not yet supported in flakes in nixos-22.05 .
             # see https://github.com/NixOS/nix/pull/6522/commits/27d0f6747d7e70be4b9ade28ce77444e6135cadb
 
+            # I'm hoping that texliveTeTex supercedes this
             # scheme-small = pkgs.texlive.combined.scheme-small;
-            inherit (pkgs.texlive.combined) scheme-small;
+            # inherit (pkgs.texlive.combined) scheme-small;
+
+            # needed for multi-column output of pandoc, specifically
+            # multirow.sty
+            # see
+            # https://levelup.gitconnected.com/use-columns-adjust-margins-and-do-more-in-markdown-with-these-simple-pandoc-commands-adb4c19f9f35
+            inherit (mkgs) texliveTeTeX;
 
           ##  chrysalis  = import ../../pkgs/chrysalis  { inherit nixpkgs; };
           #            scheme-small =
