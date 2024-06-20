@@ -2,8 +2,8 @@
   description = "Packages for a fully usable linux desktop";
 
   inputs = {
-    nixpkgs.url     = github:NixOS/nixpkgs/354184a; # master 2023-12-13
-    mixpkgs.url     = github:NixOS/nixpkgs/bb1cf08; # master 2024-02-06
+    nixpkgs.url     = github:NixOS/nixpkgs/938aa157; # nixos-24.05 2024-06-20
+    mixpkgs.url     = github:NixOS/nixpkgs/938aa157; # nixos-24.05 2024-06-20
     flake-utils.url = github:numtide/flake-utils/c0e246b9;
     hpkgs1.url      = github:sixears/hpkgs1/r0.0.23.0;
 #    hpkgs1.url      = "/home/martyn/src/hpkgs1";
