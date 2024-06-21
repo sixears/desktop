@@ -48,7 +48,7 @@
             ## video
             vlc = pkgs.vlc.override { inherit libbluray; };
             inherit (mkgs) makemkv;
-            losslesscut = mkgs.losslesscut-bin;
+            losslesscut = losslesscut-bin;
 
             # keyboardIO
             inherit chrysalis;
