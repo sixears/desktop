@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url     = github:NixOS/nixpkgs/938aa157; # nixos-24.05 2024-06-20
-    mixpkgs.url     = github:NixOS/nixpkgs/938aa157; # nixos-24.05 2024-06-20
+    mixpkgs.url     = github:NixOS/nixpkgs/1c0bec24; # master 2024-06-21
     flake-utils.url = github:numtide/flake-utils/c0e246b9;
     hpkgs1.url      = github:sixears/hpkgs1/r0.0.23.0;
 #    hpkgs1.url      = "/home/martyn/src/hpkgs1";
@@ -32,6 +32,7 @@
           packages = with pkgs; flake-utils.lib.flattenTree {
 
             inherit (mkgs) signal-desktop zoom-us;
+
             claws-mail = claws-mail.override {
               enablePluginPdf   = true;
               enablePgp         = true;
@@ -47,7 +48,7 @@
             ## video
             vlc = pkgs.vlc.override { inherit libbluray; };
             inherit (mkgs) makemkv;
-            losslesscut = losslesscut-bin;
+            losslesscut = mkgs.losslesscut-bin;
 
             # keyboardIO
             inherit chrysalis;
