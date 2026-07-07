@@ -2,10 +2,11 @@
   description = "Packages for a fully usable linux desktop";
 
   inputs = {
-    nixpkgs.url     = github:NixOS/nixpkgs/938aa157; # nixos-24.05 2024-06-20
-    mixpkgs.url     = github:NixOS/nixpkgs/1c0bec24; # master 2024-06-21
+    nixpkgs.url     = github:NixOS/nixpkgs/667d5cf1; # nixos-26.05 2026-06-26
+    mixpkgs.url     = github:NixOS/nixpkgs/6222fc2f; # master 2026-06-12
+
     flake-utils.url = github:numtide/flake-utils/c0e246b9;
-    hpkgs1.url      = github:sixears/hpkgs1/r0.0.23.0;
+    hpkgs1.url      = github:sixears/hpkgs1/r0.0.58.0;
 #    hpkgs1.url      = "/home/martyn/src/hpkgs1";
   };
 
@@ -13,7 +14,7 @@
     flake-utils.lib.eachSystem [flake-utils.lib.system.x86_64-linux] (system:
       let
         super = nixpkgs.legacyPackages.${system};
-        unfrees = [ "makemkv" "zoom" ];
+        unfrees = [ "makemkv" "obsidian" "zoom" ];
         allowUnfreePredicate =
           pkg: builtins.elem (super.lib.getName pkg) unfrees;
         pkgs =
@@ -31,7 +32,7 @@
 
           packages = with pkgs; flake-utils.lib.flattenTree {
 
-            inherit (mkgs) signal-desktop zoom-us;
+            inherit (mkgs) signal-desktop zoom-us obsidian;
 
             claws-mail = claws-mail.override {
               enablePluginPdf   = true;
@@ -42,16 +43,25 @@
             inherit (mkgs) firefox chromium;
 
             # media
-            inherit (mkgs) audacity;
-            inherit audacious evince ffmpeg gqview handbrake shntool;
+            inherit evince;
+
+            ## audio
+            inherit (mkgs) audacity flac faad2;
+            inherit audacious cdparanoia id3v2 shntool;
 
             ## video
-            vlc = pkgs.vlc.override { inherit libbluray; };
-            inherit (mkgs) makemkv;
-            losslesscut = losslesscut-bin;
+            # vlc = pkgs.vlc.override { inherit libbluray; };
+            inherit vlc;
+            # inherit (mkgs) makemkv;
+            losslesscut = mkgs.losslesscut-bin;
+            inherit mplayer;
+            inherit ffmpeg ffmpeg-normalize handbrake;
 
-            # keyboardIO
-            inherit chrysalis;
+            # downloading
+            inherit (mkgs) deluge;
+
+            # use chrysalis.keyboard.io (from chromium/brave)
+            # inherit chrysalis;
 
             # office
             inherit libreoffice gnumeric;
