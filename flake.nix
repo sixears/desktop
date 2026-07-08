@@ -43,7 +43,7 @@
             inherit (mkgs) firefox chromium;
 
             # media
-            inherit evince;
+            inherit evince geeqie;
 
             ## audio
             inherit (mkgs) audacity flac faad2;
