@@ -3,8 +3,8 @@
 
   inputs = {
     nixpkgs.url     = github:NixOS/nixpkgs/667d5cf1; # nixos-26.05 2026-06-26
-    mixpkgs.url     = github:NixOS/nixpkgs/6222fc2f; # master 2026-06-12
-
+#    mixpkgs.url     = github:NixOS/nixpkgs/149824c7; # master 2026-09-02
+    mixpkgs.url     = github:NixOS/nixpkgs/ca890045; # master 2026-11-24
     flake-utils.url = github:numtide/flake-utils/c0e246b9;
     hpkgs1.url      = github:sixears/hpkgs1/r0.0.58.0;
 #    hpkgs1.url      = "/home/martyn/src/hpkgs1";
@@ -46,7 +46,7 @@
             inherit evince geeqie;
 
             ## audio
-            inherit (mkgs) audacity flac faad2;
+            inherit (mkgs) audacity flac faad2 vorbis-tools;
             inherit audacious cdparanoia id3v2 shntool;
 
             ## video
@@ -58,7 +58,7 @@
             inherit ffmpeg ffmpeg-normalize handbrake;
 
             # downloading
-            inherit (mkgs) deluge;
+            inherit (mkgs) deluge yt-dlp yt-dlg;
 
             # use chrysalis.keyboard.io (from chromium/brave)
             # inherit chrysalis;
